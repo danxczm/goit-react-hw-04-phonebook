@@ -26,7 +26,7 @@ export function App() {
     if (contacts.some(contact => contact.name === name)) {
       alert(`${name} is already in contacts`);
     } else if (contacts.some(contact => contact.number === number)) {
-      alert(`${number} is already in contacts`);
+      alert(`${number} is already in contacts as ${name}`);
     } else {
       setContacts(prev => [newContact, ...prev]);
 
