@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Section } from './Section/Section.jsx';
 import { ContactForm } from './ContactForm/ContactForm.jsx';
@@ -41,14 +41,12 @@ export function App() {
     setFilter(currentTarget.value);
   };
 
-  const getFilteredContacts = () => {
+  const visibleContacts = useMemo(() => {
     const convertedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(convertedFilter)
     );
-  };
-
-  const visibleContacts = getFilteredContacts();
+  }, [contacts, filter]);
 
   return (
     <>
