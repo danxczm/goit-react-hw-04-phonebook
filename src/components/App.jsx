@@ -54,16 +54,18 @@ export function App() {
       <Section title={'Phonebook'}>
         <ContactForm onSubmit={addNewContact} />
       </Section>
+      <Filter value={filter} onChange={changeFilter} />
       {visibleContacts.length > 0 ? (
         <Section title={'Contacts'}>
-          <Filter value={filter} onChange={changeFilter} />
           <ContactsList
             contacts={visibleContacts}
             onDeleteContact={deleteContact}
           />
         </Section>
       ) : (
-        <h2>You have no contacts yet</h2>
+        <>
+          <h2>You have no contacts yet</h2>
+        </>
       )}
     </>
   );
