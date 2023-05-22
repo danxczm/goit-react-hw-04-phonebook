@@ -17,19 +17,23 @@ export function App() {
   };
 
   const addNewContact = ({ name, number }) => {
-    const newContact = {
-      id: nanoid(5),
-      name,
-      number,
-    };
+    const existingName = contacts.filter(contact => contact.name === name);
+    const existingNumber = contacts.filter(
+      contact => contact.number === number
+    );
 
-    if (contacts.some(contact => contact.name === name)) {
+    if (existingName.length > 0) {
       alert(`${name} is already in contacts`);
-    } else if (contacts.some(contact => contact.number === number)) {
-      alert(`${number} is already in contacts as ${name}`);
+    } else if (existingNumber.length > 0) {
+      alert(`${number} is already in contacts as ${existingNumber[0].name}`);
     } else {
-      setContacts(prev => [newContact, ...prev]);
+      const newContact = {
+        id: nanoid(5),
+        name,
+        number,
+      };
 
+      setContacts(prev => [newContact, ...prev]);
       setShowInfo(true);
       setTimeout(() => {
         setShowInfo(false);
